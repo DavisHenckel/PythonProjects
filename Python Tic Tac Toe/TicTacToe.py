@@ -1,15 +1,26 @@
 import string
 
 def printBlankBoard():
-    print(" ' ' | ' ' | ' ' ")
-    print("__________________")
-    print(" ' ' | ' ' | ' ' ")
-    print("__________________")
-    print(" ' ' | ' ' | ' ' ")
+    print("  |  |  ")
+    print("________")
+    print("  |  |  ")
+    print("________")
+    print("  |  |  ")
 
 def printActiveBoard(board):
-    for i in range(9):
-        print (board[i])
+    
+    for j in range(3): #Nested for loop to run 9 times
+        for i in range(3):
+            print(board[i], end = '')
+            if (board[i] == ' '):
+                print(board[i], end = '')
+            if(i == 2):
+                print('')
+                if (j < 2): #if we are on the last line, do not print the underline
+                    print(' __________')
+                continue
+            print(' | ', end = '')
+
 
 def playerInput():
     userInput = input("Enter a location (1-9 on the numpad respectively)")
@@ -18,5 +29,5 @@ def winCondition(board):
     print ('Hello')
 
 #Main
-testBoard = { '#', 'X', '0', 'X', 'X', 'X', 'X', 'X', 'X'}
+testBoard = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 printActiveBoard(testBoard)
