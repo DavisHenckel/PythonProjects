@@ -1,0 +1,9 @@
+Develop a function that prints out the board. Setup the board as a list where 
+index 1-9 corresponds with a number on the number pad so you get a 3x3 rep.
+then
+Build a testCase for this function
+
+Write a function thaat can take in a plaayer input and assign their marker as
+X or O.
+
+Run that function until the game is over
