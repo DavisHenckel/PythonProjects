@@ -50,7 +50,7 @@ def isGameOver(board): #0 indicates game is over. 1 indicates game is not over
 def clearBoard(board):
     for i in range(9):
         board[i] = ' '
-        return board
+    return board
 #Main
 testBoard = [' ', ' ', 'X', ' ', ' ', ' ', 'O', ' ', ' ']
 print ('Welcome to Tic-Tac-Toe!')
