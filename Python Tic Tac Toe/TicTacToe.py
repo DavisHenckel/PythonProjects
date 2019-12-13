@@ -1,5 +1,9 @@
 from os import system
 from time import sleep
+import random
+
+def chooseFirst():
+    return random.choice([1, 2])
 #clears terminal output
 def clear():
     system('cls')
@@ -13,7 +17,7 @@ def printActiveBoard(board):
                 print(board[i], end = '')
                 if(i == 2):
                     print('') 
-                    print('__________')
+                    print('---------')
                     continue
                 print(' | ', end = '')
 
@@ -22,7 +26,7 @@ def printActiveBoard(board):
                 print(board[i+3], end = '')
                 if(i == 2):
                     print('')
-                    print('__________')        
+                    print('---------')        
                     continue
                 print(' | ', end = '')
 
@@ -146,42 +150,49 @@ def isGameOver(board): #0 indicates game is active. 1 indicates game is  over.
         return 0
 
 #Main
-userInput = ''
-while (userInput != '2'):
-    theBoard = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    print ('Welcome to Tic-Tac-Toe!')
-    print ('1. New Game')
-    print ('2. Exit')
-    userInput = input()
+def main():
+    userInput = ''
+    while (userInput != '2'):
+        theBoard = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        print ('Welcome to Tic-Tac-Toe!')
+        print ('1. New Game')
+        print ('2. Exit')
+        userInput = input()
 
-    if (userInput == '1'):
-        print('Starting a new game')
-        printActiveBoard(theBoard)
-        playerChar = 0
-        userInput = input('Player 1, choose X or O\n')
-        while (userInput != 'X' and userInput != 'O'):
-            userInput = input('Please choose X or O\n')
-        if (userInput == 'X'):
-            print ('Player 1 is X, Player 2 is O')
+        if (userInput == '1'):
+            print('Starting a new game')
+            printActiveBoard(theBoard)
             playerChar = 0
+            goesFirst = chooseFirst() #Pick who goes first
+            userInput = input('Player 1, choose X or O\n')
+            while (userInput != 'X' and userInput != 'O'):
+                userInput = input('Please choose X or O\n')
+            if (userInput == 'X'):
+                print ('Player 1 is X, Player 2 is O')
+                playerChar = 0 #First move is X
+                print('Player {} goes first'.format(goesFirst))
+                if(goesFirst == 2): #if player 2 is going first, set the first move to be the opposite of player 1
+                    playerChar = 1 
+            elif (userInput == 'O'):
+                print ('Player 1 is O, Player 2 is X')
+                playerChar = 1 #First move is O
+                print('Player {} goes first'.format(goesFirst))
+                if(goesFirst == 2): #if player 2 is going first, set the first move to be the opposite of player 1
+                    playerChar = 0    
 
-        elif (userInput == 'O'):
-            print ('Player 1 is O, Player 2 is X')
-            playerChar = 1    
+        elif (userInput == '2'):
+            print('Exiting')
+            exit(0)
 
-    elif (userInput == '2'):
-        print('Exiting')
-        exit(0)
+        while (isGameOver(theBoard) == 0): #Play until the game is over
+            checkVal = playerInput(theBoard, playerChar)
+            printActiveBoard(theBoard)
+            if(checkVal == 0): #Checks return value of player input to see if a valid move was made, if not, then the user goes again
+                if(playerChar == 0): #Switches between placing O and X on the board
+                    playerChar = 1
+                    continue
+                playerChar = 0
 
-    while (isGameOver(theBoard) == 0): #Play until the game is over
-        checkVal = playerInput(theBoard, playerChar)
-        printActiveBoard(theBoard)
-        if(checkVal == 0): #Checks return value of player input to see if a valid move was made, if not, then the user goes again
-            if(playerChar == 0): #Switches between placing O and X on the board
-                playerChar = 1
-                continue
-            playerChar = 0
-
-    userInput = input('Would you like to play again? (y/n)')
-    if(userInput == 'n' or userInput == 'N'):
-        userInput = '2' #assign userInput 2 so it exits upon the next iteration
+        userInput = input('Would you like to play again? (y/n)')
+        if(userInput == 'n' or userInput == 'N'):
+            userInput = '2' #assign userInput 2 so it exits upon the next iteration
