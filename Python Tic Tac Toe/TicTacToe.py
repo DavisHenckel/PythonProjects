@@ -1,5 +1,9 @@
 from os import system
 from time import sleep
+import random
+
+def chooseFirst():
+    return random.choice([1, 2])
 #clears terminal output
 def clear():
     system('cls')
@@ -13,7 +17,7 @@ def printActiveBoard(board):
                 print(board[i], end = '')
                 if(i == 2):
                     print('') 
-                    print('__________')
+                    print('---------')
                     continue
                 print(' | ', end = '')
 
@@ -22,7 +26,7 @@ def printActiveBoard(board):
                 print(board[i+3], end = '')
                 if(i == 2):
                     print('')
-                    print('__________')        
+                    print('---------')        
                     continue
                 print(' | ', end = '')
 
@@ -158,16 +162,22 @@ while (userInput != '2'):
         print('Starting a new game')
         printActiveBoard(theBoard)
         playerChar = 0
+        goesFirst = chooseFirst() #Pick who goes first
         userInput = input('Player 1, choose X or O\n')
         while (userInput != 'X' and userInput != 'O'):
             userInput = input('Please choose X or O\n')
         if (userInput == 'X'):
             print ('Player 1 is X, Player 2 is O')
-            playerChar = 0
-
+            playerChar = 0 #First move is X
+            print('Player {} goes first'.format(goesFirst))
+            if(goesFirst == 2): #if player 2 is going first, set the first move to be the opposite of player 1
+                playerChar = 1 
         elif (userInput == 'O'):
             print ('Player 1 is O, Player 2 is X')
-            playerChar = 1    
+            playerChar = 1 #First move is O
+            print('Player {} goes first'.format(goesFirst))
+            if(goesFirst == 2): #if player 2 is going first, set the first move to be the opposite of player 1
+                playerChar = 0    
 
     elif (userInput == '2'):
         print('Exiting')
