@@ -14,6 +14,18 @@ class Deck:
             for num in ranks:
                 tempCard = card.Card(suit, num)
                 self.deck.append(tempCard)
+        self.current = 0
+        self.end = 51
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.current > self.end:
+            raise StopIteration
+        else:
+            self.current += 1
+            return self.current - 1
 
     #Returns a card at a given index            
     def getCard(self, index):
