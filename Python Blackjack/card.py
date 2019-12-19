@@ -5,4 +5,11 @@ class Card:
         self.value = value
     
     def __str__(self):
-        print('{} of {}'.format(self.value, self.suit))
+        return('{} of {}'.format(self.value, self.suit))
+
+    #Compares a card for equality
+    def isCardEqual(self, card1): 
+        if self.value == card1.value and self.suit == card1.suit:
+            return True
+        else:
+            return False

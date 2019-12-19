@@ -16,11 +16,12 @@ class Deck:
                 self.deck.append(tempCard)
         self.current = 0
         self.end = 51
+        return
     
-    def __iter__(self):
+    def __iter__(self): #Defines the iteration and uses __next__ to iterate through the deck
         return self
     
-    def __next__(self):
+    def __next__(self): #Allows the deck to be iterable
         if self.current > self.end:
             raise StopIteration
         else:
@@ -32,6 +33,7 @@ class Deck:
         tempCard = self.deck[index]
         return tempCard
 
-
-if __name__ == "__main__":
-    gameDeck = Deck()
+    def shuffleDeck(self):
+        random.shuffle(self.deck)
+        return
+    
