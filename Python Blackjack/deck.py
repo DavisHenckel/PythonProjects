@@ -14,12 +14,26 @@ class Deck:
             for num in ranks:
                 tempCard = card.Card(suit, num)
                 self.deck.append(tempCard)
+        self.current = 0
+        self.end = 51
+        return
+    
+    def __iter__(self): #Defines the iteration and uses __next__ to iterate through the deck
+        return self
+    
+    def __next__(self): #Allows the deck to be iterable
+        if self.current > self.end:
+            raise StopIteration
+        else:
+            self.current += 1
+            return self.current - 1
 
     #Returns a card at a given index            
     def getCard(self, index):
         tempCard = self.deck[index]
         return tempCard
 
-
-if __name__ == "__main__":
-    gameDeck = Deck()
+    def shuffleDeck(self):
+        random.shuffle(self.deck)
+        return
+    

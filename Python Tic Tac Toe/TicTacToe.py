@@ -196,3 +196,5 @@ def main():
         userInput = input('Would you like to play again? (y/n)')
         if(userInput == 'n' or userInput == 'N'):
             userInput = '2' #assign userInput 2 so it exits upon the next iteration
+
+main()
