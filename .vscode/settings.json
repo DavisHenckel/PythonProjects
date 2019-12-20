@@ -1,7 +1,3 @@
 {
-    "python.formatting.provider": "black",
-    "code-runner.executorMap": {
-        "python": "$pythonPath -u $fullFileName",
-    },
-    "code-runner.runInTerminal": true,
+    "python.linting.enabled": true
 }
