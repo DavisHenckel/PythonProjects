@@ -11,8 +11,8 @@ class Deck:
     def __init__(self):
         self.deck = []
         for suit in suits:
-            for num in ranks:
-                tempCard = card.Card(suit, num)
+            for num in values:
+                tempCard = card.Card(suit, values[num])
                 self.deck.append(tempCard)
         self.current = 0
         self.end = 51
